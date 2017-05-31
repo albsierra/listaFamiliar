@@ -42,7 +42,68 @@
       "principalType": "ROLE",
       "principalId": "Listamember",
       "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "Listamember",
+      "permission": "ALLOW",
+      "property": "limpiarproducto"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "comprador",
+      "permission": "ALLOW",
+      "property": "productocomprado"
     }
   ],
-  "methods": {}
+  "methods": {
+    "limpiarproducto": {
+      "accepts": [
+        {
+          "arg": "ctx",
+          "type": "object",
+          "required": false,
+          "description": "",
+          "http": {
+            "source": "context"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "productos",
+          "type": "array",
+          "root": true,
+          "description": "lista de productos modificada"
+        }
+      ],
+      "description": "cambiar todos los atributos de compra de unos productos de una lista familiar en particular a false",
+      "http": [
+        {
+          "path": "/limpiarproducto",
+          "verb": "put"
+        }
+      ]
+    },
+    "prototype.productocomprado": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "comprado",
+          "type": "boolean",
+          "root": true,
+          "description": "boleano de si esta comprado"
+        }
+      ],
+      "description": "el atributo comprado pasa a true",
+      "http": [
+        {
+          "path": "/productocomprado",
+          "verb": "put"
+        }
+      ]
+    }
+  }
 }
